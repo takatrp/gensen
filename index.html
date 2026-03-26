@@ -70,13 +70,14 @@
     background:#fff;
     color:#284855;
   }
+
   .official-links{
-    margin-top:16px;
-    padding:14px 16px;
+    margin:0 0 12px;
+    padding:12px 14px;
     border:1px solid #cfe0e6;
-    border-radius:16px;
+    border-radius:14px;
     background:#fff;
-    font-size:14px;
+    font-size:13px;
     line-height:1.8;
   }
   .official-links a{
@@ -280,14 +281,14 @@
     white-space:pre-line;
   }
 
-  .ref-card,.report-card{
+  .ref-card{
     margin-top:16px;
     border:1px solid var(--line);
     border-radius:16px;
     padding:16px;
     background:#fff;
   }
-  .ref-card h3,.report-card h3{
+  .ref-card h3{
     margin:0 0 10px;
     font-size:16px;
   }
@@ -337,6 +338,13 @@
     font-size:13px;
     line-height:1.7;
   }
+
+  .screen-only{ display:block; }
+  .print-only{ display:none; }
+
+  #reportSheet{
+    background:#fff;
+  }
   .report-meta{
     font-size:12px;
     color:var(--muted);
@@ -374,6 +382,19 @@
     line-height:1.8;
   }
 
+  details.optional-report{
+    margin-top:16px;
+    border:1px solid var(--line);
+    border-radius:14px;
+    background:#fff;
+    padding:12px 14px;
+  }
+  details.optional-report summary{
+    cursor:pointer;
+    font-weight:800;
+    color:#334155;
+  }
+
   footer{
     margin-top:18px;
     color:var(--muted);
@@ -381,14 +402,134 @@
     line-height:1.8;
   }
 
+  @page{
+    size:A4 portrait;
+    margin:10mm;
+  }
+
   @media print{
-    body{ background:#fff; }
-    .hero,.grid>section:first-child,.screen-only,details,footer{ display:none !important; }
-    .wrap{ max-width:none; margin:0; padding:0; }
-    .grid{ display:block; margin-top:0; }
-    .card{ border:none; box-shadow:none; padding:0; }
-    #reportSheet{ margin:0; border:1px solid #cbd5e1; border-radius:0; padding:16px; box-shadow:none; }
-    #reportSheet table{ font-size:12px; }
+    html,body{
+      width:210mm;
+      height:297mm;
+      margin:0;
+      padding:0;
+      background:#fff;
+      -webkit-print-color-adjust:exact;
+      print-color-adjust:exact;
+    }
+
+    body *{
+      visibility:hidden !important;
+    }
+
+    #reportSheetWrap,
+    #reportSheet,
+    #reportSheet *{
+      visibility:visible !important;
+    }
+
+    #reportSheetWrap{
+      display:block !important;
+      position:absolute;
+      left:0;
+      top:0;
+      width:190mm;
+      margin:0;
+      padding:0;
+      background:#fff;
+    }
+
+    #reportSheet{
+      display:block !important;
+      width:190mm;
+      min-height:277mm;
+      margin:0;
+      padding:8mm 9mm;
+      border:1px solid #cbd5e1;
+      border-radius:0;
+      box-shadow:none;
+      background:#fff;
+      overflow:hidden;
+      break-inside:avoid;
+      page-break-inside:avoid;
+    }
+
+    #reportSheet h3{
+      margin:0 0 6px;
+      font-size:16px;
+    }
+
+    #reportSheet .report-meta{
+      font-size:10px;
+      line-height:1.5;
+      margin-bottom:6px;
+    }
+
+    #reportSheet .report-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:8px;
+      margin-top:8px;
+    }
+
+    #reportSheet .report-box{
+      padding:8px 10px;
+      border-radius:10px;
+    }
+
+    #reportSheet .report-box .name{
+      font-size:10px;
+    }
+
+    #reportSheet .report-box .value{
+      font-size:18px;
+      margin-top:2px;
+    }
+
+    #reportSheet .subttl{
+      margin:10px 0 6px;
+      font-size:13px;
+    }
+
+    #reportSheet table{
+      width:100%;
+      border-collapse:collapse;
+      margin-top:6px;
+      font-size:10.5px;
+      table-layout:fixed;
+    }
+
+    #reportSheet th,
+    #reportSheet td{
+      border:1px solid #cbd5e1;
+      padding:5px 6px;
+      vertical-align:top;
+      word-break:break-word;
+      line-height:1.45;
+    }
+
+    #reportSheet th{
+      width:32%;
+      background:#f8fafc;
+    }
+
+    #reportSheet .ref-note-list{
+      margin:6px 0 0;
+      padding-left:16px;
+      font-size:10.5px;
+      line-height:1.45;
+    }
+
+    #reportSheet .report-rule{
+      white-space:pre-line;
+      line-height:1.5;
+    }
+
+    .screen-only,
+    details,
+    footer{
+      display:none !important;
+    }
   }
 
   @media (max-width:900px){
@@ -412,13 +553,6 @@
       <span class="badge">甲欄 / 乙欄</span>
       <span class="badge">扶養親族等 7人超に対応</span>
       <span class="badge">社保控除後入力 / 総支給−社保入力</span>
-    </div>
-
-    <div class="official-links">
-      <strong>国税庁の原典確認用リンク</strong><br>
-      <a href="https://www.nta.go.jp/publication/pamph/gensen/zeigakuhyo2026/01.htm" target="_blank" rel="noopener noreferrer">令和8年分 源泉徴収税額表（案内ページ）</a><br>
-      <a href="https://www.nta.go.jp/publication/pamph/gensen/zeigakuhyo2026/data/01-07.pdf" target="_blank" rel="noopener noreferrer">給与所得の源泉徴収税額表（月額表）PDF</a><br>
-      <a href="https://www.nta.go.jp/publication/pamph/gensen/zeigakuhyo2026/data/all.pdf" target="_blank" rel="noopener noreferrer">源泉徴収税額表一式 PDF</a>
     </div>
   </section>
 
@@ -549,16 +683,24 @@
 
       <section class="ref-card screen-only">
         <h3>参照箇所（確認用）</h3>
+
+        <div class="official-links">
+          <strong>国税庁の原典確認リンク</strong><br>
+          <a href="https://www.nta.go.jp/publication/pamph/gensen/zeigakuhyo2026/01.htm" target="_blank" rel="noopener noreferrer">令和8年分 源泉徴収税額表（案内ページ）</a><br>
+          <a href="https://www.nta.go.jp/publication/pamph/gensen/zeigakuhyo2026/data/01-07.pdf" target="_blank" rel="noopener noreferrer">給与所得の源泉徴収税額表（月額表）PDF</a><br>
+          <a href="https://www.nta.go.jp/publication/pamph/gensen/zeigakuhyo2026/data/all.pdf" target="_blank" rel="noopener noreferrer">源泉徴収税額表一式 PDF</a>
+        </div>
+
         <div id="referenceSummary" class="ref-summary">計算後に、参照した税額表の行・列または算式を表示します。</div>
-        <div class="small">上の国税庁リンクから原典PDFを開き、ここで示したレンジ・列・算式と照合してください。</div>
+        <div class="small">このカード内のリンクから原典PDFを開き、下のレンジ・列・算式と照合してください。</div>
         <div id="referenceVisual" class="small"></div>
       </section>
 
-      <section class="report-card" id="reportSheet">
-        <h3>社内確認票</h3>
-        <div class="report-meta">計算後、この欄を印刷またはPDF保存できます。</div>
-        <div id="reportContent" class="report-placeholder">まだ計算されていません。</div>
-      </section>
+      <details class="optional-report screen-only">
+        <summary>社内確認票を画面で確認する</summary>
+        <div class="small" style="margin-top:8px;">通常は非表示です。印刷時はこの内容だけがA4縦1枚で出力されます。</div>
+        <div id="reportPreviewHost" style="margin-top:10px;"></div>
+      </details>
 
       <details class="screen-only" style="margin-top:14px;">
         <summary style="cursor:pointer;font-weight:800;color:#334155;">実務メモ</summary>
@@ -596,6 +738,14 @@
       </footer>
     </section>
   </div>
+</div>
+
+<div id="reportSheetWrap" class="print-only">
+  <section id="reportSheet">
+    <h3>社内確認票</h3>
+    <div class="report-meta">印刷またはPDF保存用。通常画面では非表示、印刷時のみ出力されます。</div>
+    <div id="reportContent" class="report-placeholder">まだ計算されていません。</div>
+  </section>
 </div>
 
 <script>
@@ -906,7 +1056,8 @@
     resultNote: document.getElementById('resultNote'),
     referenceSummary: document.getElementById('referenceSummary'),
     referenceVisual: document.getElementById('referenceVisual'),
-    reportContent: document.getElementById('reportContent')
+    reportContent: document.getElementById('reportContent'),
+    reportPreviewHost: document.getElementById('reportPreviewHost')
   };
 
   const state = {
@@ -1322,6 +1473,44 @@
       : buildFormulaReferenceHtml(ref, amount);
   }
 
+  function buildCompactReferenceRows(ref, amount) {
+    if (!ref) return [['参照情報', '参照情報なし']];
+
+    if (ref.kind === 'table') {
+      const rows = [
+        ['参照資料', ref.sourceTitle],
+        ['参照行', `${formatYen(ref.rangeStart)}以上 ${formatYen(ref.rangeEnd)}未満`],
+        ['参照列', ref.usedColumnLabel]
+      ];
+      if (ref.notes && ref.notes.length) {
+        rows.push(['補足', ref.notes.join(' / ')]);
+      }
+      return rows;
+    }
+
+    const rows = [
+      ['参照資料', ref.sourceTitle],
+      ['適用帯', ref.bandLabel],
+      ['使用列', ref.usedColumnLabel],
+      ['算式', ref.formulaText]
+    ];
+
+    if (ref.constant !== null) rows.push(['定数項', formatYen(ref.constant)]);
+    if (ref.baseAmount !== null) rows.push(['基準額', formatYen(ref.baseAmount)]);
+    if (ref.baseTax !== null) rows.push(['基準税額', formatYen(ref.baseTax)]);
+    if (ref.baseAmount !== null && amount !== null && amount >= ref.baseAmount) {
+      rows.push(['超過額', formatYen(amount - ref.baseAmount)]);
+    }
+    if (ref.rate !== null) {
+      rows.push(['税率', ref.rateLabel || `${(ref.rate * 100).toFixed(3)}%`]);
+    }
+    if (ref.notes && ref.notes.length) {
+      rows.push(['補足', ref.notes.join(' / ')]);
+    }
+
+    return rows;
+  }
+
   function buildReportHtml(payload) {
     if (!payload) return '<div class="report-placeholder">まだ計算されていません。</div>';
 
@@ -1332,16 +1521,13 @@
       ['判定に使った社保控除後金額', formatYen(payload.amount)],
       ['扶養親族等の数', payload.depsText]
     ];
+
     if (payload.mode === 'gross') {
       inputRows.push(['総支給額', formatYen(payload.grossAmount)]);
       inputRows.push(['社会保険料等', formatYen(payload.socialAmount)]);
     }
 
-    const referenceHtml = payload.reference
-      ? (payload.reference.kind === 'table'
-        ? buildTableReferenceHtml(payload.reference)
-        : buildFormulaReferenceHtml(payload.reference, payload.amount))
-      : '<div class="report-placeholder">参照情報なし</div>';
+    const compactReferenceRows = buildCompactReferenceRows(payload.reference, payload.amount);
 
     return `
       <div class="report-grid">
@@ -1351,7 +1537,7 @@
         </div>
         <div class="report-box">
           <div class="name">参照箇所</div>
-          <div class="value" style="font-size:15px;line-height:1.7;">${escapeHtml(buildReferenceSummary(payload.reference))}</div>
+          <div class="value" style="font-size:13px;line-height:1.55;">${escapeHtml(buildReferenceSummary(payload.reference))}</div>
         </div>
       </div>
 
@@ -1369,8 +1555,12 @@
         </tbody>
       </table>
 
-      <h4 class="subttl">参照箇所（検証用）</h4>
-      ${referenceHtml}
+      <h4 class="subttl">参照情報（印刷用の簡易版）</h4>
+      <table>
+        <tbody>
+          ${compactReferenceRows.map(([k, v]) => `<tr><th>${escapeHtml(k)}</th><td>${escapeHtml(v)}</td></tr>`).join('')}
+        </tbody>
+      </table>
 
       ${payload.notes.length
         ? `<h4 class="subttl">補足メモ</h4><ul class="ref-note-list">${payload.notes.map(note => `<li>${escapeHtml(note)}</li>`).join('')}</ul>`
@@ -1413,7 +1603,9 @@
   }
 
   function renderReport(payload) {
-    els.reportContent.innerHTML = buildReportHtml(payload);
+    const html = buildReportHtml(payload);
+    els.reportContent.innerHTML = html;
+    els.reportPreviewHost.innerHTML = html;
   }
 
   function calculate() {
